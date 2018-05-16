@@ -6,6 +6,7 @@ Definitely not trying to copy the Kiwi Bot (https://www.kiwicampus.com/). Class 
 ![Raspberry Pi Expanded](images/raspberry_pi_pinout_expanded.png)
 
 # GPS GP-20U7
+GPS module from [sparkfun](https://www.sparkfun.com/products/13740).
 ![GPS GP-20U7](images/GP-20U7_real.jpg)
 ![PS GP-20U7 Wiring](images/rGP-20U7_wiring_pi.png)
 ## Wiring
