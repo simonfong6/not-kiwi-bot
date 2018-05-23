@@ -14,11 +14,13 @@ GPS module from [sparkfun](https://www.sparkfun.com/products/13740).
 ![GPS GP-20U7](images/GP-20U7_real.jpg)
 ![PS GP-20U7 Wiring](images/GP-20U7_wiring_pi.jpg)
 ## Wiring
-### GPS -> RPi
-VCC -> 3.3V
-GND -> GND
-TX -> RX (Receiver)
-RX -> NC (No Connect)
+| GP-20U7       | Raspberry Pi           | Reason  |
+| ------------- |:-------------:| -----:|
+| VCC     		| 3.3V 			| Power |
+| GND      		| GND      		|   Ground|
+| TX 			| RX      		|    Receive Data|
+| RX 			| No Connect      |    Don't need to send to GPS. |
+
 
 
 ## Installations
