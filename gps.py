@@ -161,7 +161,7 @@ if(__name__ == '__main__'):
     
     # Uncomment below and comment above to use this for production
     if(not (fake == 'fake')):
-        gps = GPS()
+        gps = GPS(port='/dev/serial0')
     
     while(True):
         print(gps.read_lat_long_DD())
