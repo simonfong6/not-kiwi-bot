@@ -73,6 +73,9 @@ gps_code,?       ,?,latitude,dir,longitude,dir,?  ,?    ,?     ,,,?
 0       ,1       ,2,3       ,4  ,5        ,6  ,7  ,8    ,9     ,10,11,12
         """
         line = self.ser.readline()
+        # Handle when it is a byte instead of string
+        if(type(line) is bytes):
+            line = line.decode("utf-8")
         gps_code = line[:6]
         
         logging.debug("Line read: {}".format(line))
@@ -81,6 +84,10 @@ gps_code,?       ,?,latitude,dir,longitude,dir,?  ,?    ,?     ,,,?
         
         while((gps_code != '$GPRMC')):
             line = self.ser.readline()
+            # Handle when it is a byte instead of string
+            if(type(line) is bytes):
+                line = line.decode("utf-8")
+
             gps_code = line[:6]
             
             logging.debug("Line read: {}".format(line))
