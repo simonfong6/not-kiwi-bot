@@ -17,7 +17,7 @@
 float asfsel1 = (1.0/8192.0);
 float magsens = 0.6;
 
-// This function read Nbytes bytes from I2C device at address Address. 
+// This function read Nbytes bytes from I2C device at address Address
 // Put read bytes starting at register Register in the Data array. 
 void I2Cread(uint8_t Address, uint8_t Register, uint8_t Nbytes, uint8_t* Data)
 {
