@@ -3,8 +3,10 @@ Definitely not trying to copy the Kiwi Bot (https://www.kiwicampus.com/). Class 
 
 # Accreditation
 ## Fritzing Parts
-We the GPS (GP-20U7) fritzing part from the [Johnny-Five](http://johnny-five.io/) javascript robotics platform. The author is Rick Waldron and the [johnny-five](https://github.com/rwaldron/johnny-five) repo has many fritzing parts.
-
+### GP-20u7
+We use the GPS (GP-20U7) fritzing part from the [Johnny-Five](http://johnny-five.io/) javascript robotics platform. The author is Rick Waldron and the [johnny-five](https://github.com/rwaldron/johnny-five) repo has many fritzing parts.
+### PCA9685
+[PCA9685 Breakout Board Part](https://github.com/adafruit/Fritzing-Library/tree/master/parts/retired)
 # Raspberry Pi 3 Pinout
 ![Raspberry Pi](images/raspberry_pi_pinout.png)
 ![Raspberry Pi Expanded](images/raspberry_pi_pinout_expanded.png)
@@ -50,6 +52,10 @@ python gps.py fake
 ```
 
 # Resources and Lessons Learned
+## Project GPS
+We build off the project team from Project GPS.
+[Documentation](https://guitar.ucsd.edu/maeece148/index.php/Project_gps)
+[Repository](https://github.com/MAE-ECE-148/ProjectGPS)
 ## Python
 [Decoding Bytes to String](https://stackoverflow.com/questions/606191/convert-bytes-to-a-string)
 [Bytes](https://stackoverflow.com/questions/6269765/what-does-the-b-character-do-in-front-of-a-string-literal)
