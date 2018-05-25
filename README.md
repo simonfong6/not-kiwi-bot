@@ -8,7 +8,6 @@ We use the GPS (GP-20U7) fritzing part from the [Johnny-Five](http://johnny-five
 ### PCA9685
 [PCA9685 Breakout Board Part](https://github.com/adafruit/Fritzing-Library/tree/master/parts/retired)
 # Overall Wiring
-![](images/full_wiring.jpg =250x)
 <img alt="Full Wiring" src="images/full_wiring.jpg" height=300/>
 # Raspberry Pi 3 Pinout
 <img alt="Raspberry Pi" src="images/raspberry_pi_pinout.png" height=300/>
