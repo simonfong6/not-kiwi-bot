@@ -1,3 +1,4 @@
+
 # not-kiwi-bot
 Definitely not trying to copy the Kiwi Bot (https://www.kiwicampus.com/). Class project for MAE 148 at UC San Diego.
 
@@ -8,7 +9,8 @@ We use the GPS (GP-20U7) fritzing part from the [Johnny-Five](http://johnny-five
 ### PCA9685
 [PCA9685 Breakout Board Part](https://github.com/adafruit/Fritzing-Library/tree/master/parts/retired)
 # Overall Wiring
-<img alt="Full Wiring" src="images/full_wiring.jpg" height=300/>
+<img alt="Full Wiring" src="images/full_wiring.jpg" height=300/>  
+
 # Raspberry Pi 3 Pinout
 <img alt="Raspberry Pi" src="images/raspberry_pi_pinout.png" height=300/>
 <img alt="Raspberry Pi Expanded" src="images/raspberry_pi_pinout_expanded.png" height=300/>
