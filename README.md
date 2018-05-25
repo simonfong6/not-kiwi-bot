@@ -7,14 +7,16 @@ Definitely not trying to copy the Kiwi Bot (https://www.kiwicampus.com/). Class 
 We use the GPS (GP-20U7) fritzing part from the [Johnny-Five](http://johnny-five.io/) javascript robotics platform. The author is Rick Waldron and the [johnny-five](https://github.com/rwaldron/johnny-five) repo has many fritzing parts.
 ### PCA9685
 [PCA9685 Breakout Board Part](https://github.com/adafruit/Fritzing-Library/tree/master/parts/retired)
+# Overall Wiring
+![Full Wiring](images/full_wiring.jpg =250x)
 # Raspberry Pi 3 Pinout
-![Raspberry Pi](images/raspberry_pi_pinout.png)
-![Raspberry Pi Expanded](images/raspberry_pi_pinout_expanded.png)
+![Raspberry Pi](images/raspberry_pi_pinout.png  =250x)
+![Raspberry Pi Expanded](images/raspberry_pi_pinout_expanded.png =250x)
 
 # GPS GP-20U7
 GPS module from [sparkfun](https://www.sparkfun.com/products/13740).
-![GPS GP-20U7](images/GP-20U7_real.jpg)
-![PS GP-20U7 Wiring](images/GP-20U7_wiring_pi.jpg)
+![GPS GP-20U7](images/GP-20U7_real.jpg =250x)
+![PS GP-20U7 Wiring](images/GP-20U7_wiring_pi.jpg =250x)
 ## Wiring
 | GP-20U7       | Raspberry Pi           | Reason  |
 | ------------- |:-------------:| -----:|
