@@ -10,7 +10,7 @@ We use the GPS (GP-20U7) fritzing part from the [Johnny-Five](http://johnny-five
 # Overall Wiring
 ![Full Wiring](images/full_wiring.jpg =250x)
 # Raspberry Pi 3 Pinout
-![Raspberry Pi](images/raspberry_pi_pinout.png  =250x)
+![Raspberry Pi](images/raspberry_pi_pinout.png  =250x250)
 ![Raspberry Pi Expanded](images/raspberry_pi_pinout_expanded.png =250x)
 
 # GPS GP-20U7
