@@ -66,7 +66,7 @@ def _main():
         while(True):
             d1,d2 = ultrasonics.run()
             
-            print("Distance 1: {} \nDistance 2: {}".format(d1,d2))
+            print("Distance 1: {} cm \nDistance 2: {} cm".format(d1,d2))
     except(KeyboardInterrupt):
         print("Exiting...")
 
