@@ -17,6 +17,14 @@ FAIL = {'status': {'success': False}}
 
 app = Flask(__name__)
 
+def overwrite(some_file, data):
+    """ Overwrite the entire file with the new dictionary.
+    """
+    
+    some_file.seek(0)                       # Go to the beginning of the file
+    json.dump(data, some_file, indent=4)    # Dump all the data
+    some_file.truncate()                    # Need this not sure why. TODO
+
 
 @app.route('/')
 def index():
@@ -41,12 +49,7 @@ def replace_markers():
     data = {'markers': markers}
 
     with open(DATA_FILE, 'r+') as f:
-
-        f.seek(0)
-        
-        json.dump(data, f, indent=4)
-        
-        f.truncate()
+        overwrite(f,data)
         
     return jsonify(SUCCESS)
     
@@ -58,12 +61,43 @@ def add_markers():
     marker = request.json['marker']    
 
     with open(DATA_FILE, 'r+') as f:
-        
+        # Load the data from file as a dictionary.
         data = json.load(f)
+        
+        # Add the marker to the dictionary.
         data['markers'].append(marker)
-        f.seek(0)
-        json.dump(data, f, indent=4)
-        f.truncate()
+        
+        # Overwrite the entire file with the new dictionary.
+        overwrite(f,data)
+        
+    return jsonify(SUCCESS)
+
+@app.route('/markers/update', methods=['GET','POST'])
+def update_markers():
+    """ Update or add markers from the front-end
+    """
+    
+    marker = request.json
+    
+    label = marker['label']
+
+    with open(DATA_FILE, 'r+') as f:
+        data = json.load(f)
+        
+        updated = False
+        
+        for index,marker_db in enumerate(data['markers']):
+            if(marker_db['label'] == label):
+                data['markers'][index]['position'] = marker['position']
+                print("FOUND")
+                updated = True
+        
+        if(not updated):
+            data['markers'].append(marker)
+            print("NOT FOUND")
+
+        
+        overwrite(f,data)
         
     return jsonify(SUCCESS)
 	
