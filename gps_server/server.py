@@ -45,7 +45,8 @@ def get_markers():
 def replace_markers():
     """ Replaces all markers in the data file with the ones given.
     """
-    markers = request.json
+    markers = request.json['markers']
+    print(json.dumps(markers, indent=4))
     data = {'markers': markers}
 
     with open(DATA_FILE, 'r+') as f:
