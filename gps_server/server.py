@@ -32,6 +32,12 @@ def index():
     """
     return send_from_directory('.', 'index.html')
 
+@app.route('/favicon.ico')
+def favicon():
+    """ Serve the favicon.
+    """
+    return send_from_directory('.', 'favicon.ico')
+
 @app.route('/markers')
 def get_markers():
     """ Reads from the data file and returns the markers as JSON.
