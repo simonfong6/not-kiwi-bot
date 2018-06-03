@@ -60,7 +60,7 @@ def _main():
         return
     
     if(option == 'gps2'):
-        add(project_gps_waypoint_1)
+        add(project_gps_waypoint_2)
         print("Added ProjectGPS waypoint 2 at {}".format(URL))
         return
         
