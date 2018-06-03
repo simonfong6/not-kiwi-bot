@@ -191,7 +191,7 @@ if(__name__ == '__main__'):
 
     # Create a GPS object using fake data and logging all messages.
     # Use this for testing
-    gps = GPS(fake=True,debug=True)
+    gps = GPS(fake=True,debug=True, recrod = True)
     
     # Uncomment below and comment above to use this for production
     if(not (fake == 'fake')):
