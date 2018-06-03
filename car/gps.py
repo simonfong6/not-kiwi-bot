@@ -27,6 +27,7 @@ Important Note: GPS Receivers do not work well inside buildings and do take some
 import serial
 import sys
 import logging
+import json
 
 
 
@@ -41,7 +42,7 @@ class Fake_Serial:
 
 class GPS:
     
-    def __init__(self,port='/dev/ttyAMA0',fake=False,debug=False):
+    def __init__(self,port='/dev/ttyAMA0',fake=False,debug=False, record=False):
         
         # If fake flag is on, we read fake data.
         if(fake):
@@ -55,6 +56,14 @@ class GPS:
             logging.basicConfig(filename='gps.log',level=logging.DEBUG)
         else:
             logging.basicConfig(filename='gps.log',level=logging.INFO)
+            
+        # Determines whether or not we record GPS data.
+        self.record = record
+        if(self.record):
+            self.markers = []
+            self.count = 0
+            from time import time
+            self.DATA_FILE = 'gps_data_{}.json'.format(int(time()))
         
 
     def read_lat_long_DMM(self):
@@ -148,13 +157,31 @@ gps_code,?       ,?,latitude,dir,longitude,dir,?  ,?    ,?     ,,,?
             
         return (lat_degrees,long_degrees)
         
+    def record_data(self,lat_deg, long_deg):
+        """ Record data to array.
+        """
+        marker = {
+                            "position": {
+                                "lat": lat_deg, 
+                                "lng": long_deg
+                            }, 
+                            "label": self.count
+                          }
+        self.count += 1
+                          
+        self.markers.append(marker)
+    
+    def write_records(self):
+        """ Write records to the file.
+        """
         
-        
-        
-        
-        
-        
-        
+        # Open the json file
+        with open(self.DATA_FILE, 'r+') as f:
+            data = {'markers': self.markers}
+            f.seek(0)
+            json.dump(data, f, indent=4)
+            f.truncate()
+
                 
 if(__name__ == '__main__'):
     gps = None
@@ -168,7 +195,7 @@ if(__name__ == '__main__'):
     
     # Uncomment below and comment above to use this for production
     if(not (fake == 'fake')):
-        gps = GPS(port='/dev/serial0')
+        gps = GPS(port='/dev/serial0', record = True)
     
     while(True):
         print(gps.read_lat_long_DD())
