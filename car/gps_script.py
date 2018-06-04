@@ -154,6 +154,11 @@ gps_code,?       ,?,latitude,dir,longitude,dir,?  ,?    ,?     ,,,?
             
         if(long_dir == 'W'):
             long_degrees = -long_degrees
+        
+        # Record data if we need to.
+        if(self.record):
+            self.record_data(lat_degrees,long_degrees)
+            self.write_records()
             
         return (lat_degrees,long_degrees)
         
@@ -176,7 +181,7 @@ gps_code,?       ,?,latitude,dir,longitude,dir,?  ,?    ,?     ,,,?
         """
         
         # Open the json file
-        with open(self.DATA_FILE, 'r+') as f:
+        with open(self.DATA_FILE, 'w+') as f:
             data = {'markers': self.markers}
             f.seek(0)
             json.dump(data, f, indent=4)
@@ -197,6 +202,11 @@ if(__name__ == '__main__'):
     if(not (fake == 'fake')):
         gps = GPS(port='/dev/serial0', record = True)
     
-    while(True):
-        print(gps.read_lat_long_DD())
+    try:
+        while(True):
+            print(gps.read_lat_long_DD())
+    except(KeyboardInterrupt):
+        gps.write_records()
+        print("Exiting...")
+        
         
