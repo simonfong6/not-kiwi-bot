@@ -8,6 +8,8 @@ Ultrasonic (HCSR04) part for Donkeycar framework.
 
 import serial
 
+#send a stop signal when something is less than 50cm away
+THRESHOLD = 50
 
 class HCSR04:
     '''
@@ -19,6 +21,7 @@ class HCSR04:
         self.ser = serial.Serial(port, 9600)
         self.d1 = 500
         self.d2 = 500
+        self.on = True
 
     #blocking single-run version
     def run(self):
@@ -26,18 +29,25 @@ class HCSR04:
         #distances are in centimeters
         self.ser.reset_input_buffer()
         self.d1, self.d2 = self.ser.readline().strip().split()
-        return (self.d1, self.d2)
+        #returns output stop_cmd
+        return min(self.d1, self.d2) > THRESHOLD
 
     #this gets called after an update
     #blindly return the values
     def run_threaded():
-        return (self.d1, self.d2)
+        #returns stop_cmd
+        return min(self.d1, self.d2) > THRESHOLD
     #independent thread version
     def update(self):
-        self.run()
+        while self.on:
+            #get the two distances from the arduino via serial
+            #distances are in centimeters
+            self.ser.reset_input_buffer()
+            self.d1, self.d2 = self.ser.readline().strip().split()
 
     def shutdown(self):
         #nothing to do here really
+        self.on = False
         return
         
 def _main():
