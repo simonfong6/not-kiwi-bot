@@ -66,17 +66,17 @@ class Planner():
             self.steer_cmd = self.steering_controller(currLocation, bearing_angle)
             #415 is our driving speed, 405 is our neutral
             #TODO Make these constants easier to find/change
-            self.throttle_cmd = 415 if stop_cmd else 405
+            self.throttle_cmd = 0.5 if stop_cmd else 0
 
         # print updates
-        self.print_process()
+        #self.print_process()
 
         # write to file
         # self.textFile.write("%s, %s;\n" % (self.currLocation[0], self.currLocation[1]))
 
         # end
         if self.currWaypoint == self.numWaypoints and self.reachGoal == True:
-            self.throttle_cmd = 405
+            self.throttle_cmd = 0.5
             print("Done.")
 
         return self.steer_cmd, self.throttle_cmd

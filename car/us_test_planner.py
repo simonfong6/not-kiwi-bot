@@ -46,7 +46,7 @@ class Planner():
         self.steer_cmd = 0
         #415 is our driving speed, 405 is our neutral
         #TODO Make these constants easier to find/change
-        self.throttle_cmd = 415 if stop_cmd else 405
+        self.throttle_cmd = 0.5 if stop_cmd else 0
 
         return self.steer_cmd, self.throttle_cmd
 
