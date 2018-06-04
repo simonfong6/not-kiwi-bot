@@ -2351,20 +2351,6 @@
                 "lng": -117.235441
             }, 
             "label": "End: 335"
-        }, 
-        {
-            "position": {
-                "lat": 32.8811271, 
-                "lng": -117.2342783
-            }, 
-            "label": "P GPS Goal 1"
-        }, 
-        {
-            "position": {
-                "lat": 32.8812414, 
-                "lng": -117.2374792
-            }, 
-            "label": "P GPS Goal 2"
         }
     ]
 }

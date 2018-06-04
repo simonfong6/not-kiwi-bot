@@ -9,8 +9,8 @@ Call: gps_manage.py -drive
 
 # import GPS Planner and other DK parts
 import donkeycar as dk
-from donkeycar.parts.gps import GPS
-from donkeycar.parts.planner import Planner
+from gps_parts.gps import GPS
+from gps_parts.planner import Planner
 from donkeycar.vehicle import Vehicle
 from donkeycar.parts.actuator import PCA9685, PWMSteering, PWMThrottle
 
@@ -68,6 +68,7 @@ def drive(cfg, goalLocation):
 if __name__ == '__main__':
     # goalLocation is a list of lists: each sublist a waypoint for the controller.
     goalLocation = [[32.8811271,-117.2342783], [32.8812414, -117.2374792]]
-
+    goalLocation = [[32.881322,-117.235454], [32.881162,-117.235459]]
+    
     cfg = dk.load_config()  
     drive(cfg, goalLocation)
