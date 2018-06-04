@@ -69,6 +69,6 @@ if __name__ == '__main__':
     # goalLocation is a list of lists: each sublist a waypoint for the controller.
     goalLocation = [[32.8811271,-117.2342783], [32.8812414, -117.2374792]]
     goalLocation = [[32.881322,-117.235454], [32.881162,-117.235459]]
-
+    
     cfg = dk.load_config()  
     drive(cfg, goalLocation)
