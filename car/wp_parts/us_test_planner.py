@@ -11,20 +11,11 @@ from numpy import pi, cos, sin, arctan2, sqrt, square, radians
 import time
 
 class Planner():
-    def __init__(self, goalLocation, steer_gain, throttle_gain):
+    def __init__(self, goalLocation):
 
         # TODO: calibrate the throttle and steering upper and lower bounds
-
-        # Throttle controller
-        self.throttle_gain = throttle_gain     # TODO: tune P throttle controller
-        self.throttle_lower = 0                # calibrate with DK actuator parts inputs
-        self.throttle_upper = 0.14             # calibrate with DK actuator parts inputs
         self.throttle_cmd = 0.01               # throttle command to send to DC motor
 
-        # Steering controller
-        self.steer_gain = steer_gain           # TODO: add PID steering controller
-        self.steering_left = -1                # calibrate with DK actuator parts inputs
-        self.steering_right = 1                # calibrate with DK actuator parts inputs
         self.steering_cmd = 0                  # steer command to send to servos
         self.bearing = 0                       # current bearing error to goal [rad]
 
@@ -46,8 +37,8 @@ class Planner():
         self.steer_cmd = 0
         #415 is our driving speed, 405 is our neutral
         #TODO Make these constants easier to find/change
-        self.throttle_cmd = 0.5 if stop_cmd else 0
-
+        self.throttle_cmd = 0 if stop_cmd else 0.5
+        #print("planner returning throttle of %f" % (self.throttle_cmd))
         return self.steer_cmd, self.throttle_cmd
 
     def shutdown(self):
