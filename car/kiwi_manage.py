@@ -11,11 +11,10 @@ Call: gps_manage.py -drive
 
 # import GPS Planner and other DK parts
 import donkeycar as dk
-from donkeycar.parts.gps import GPS
-from donkeycar.parts.ultrasonic import HCSR04
-#TODO implement DMP part
-from donkeycar.parts.dmp import DMP
-from donkeycar.parts.planner import Planner
+from wp_parts.gps import GPS
+from wp_parts.ultrasonic import HCSR04
+from wp_parts.dmp import MPU9265
+from wp_parts.planner import KiwiPlanner
 from donkeycar.vehicle import Vehicle
 from donkeycar.parts.actuator import PCA9685, PWMSteering, PWMThrottle
 
@@ -44,11 +43,11 @@ def drive(cfg, goalLocation):
     # GPS is a DK part that will poll GPS data from serial port
     # and output current location in radians.
     gps = GPS(cfg.BAUD_RATE, cfg.PORT, cfg.TIMEOUT)
-    dmp = DMP()#TODO)
+    dmp = MPU9265()
 
     # Planner is a DK part that calculates control signals to actuators based on current location
     # from GPS
-    planner = Planner(goalLocation=goalLocation, steer_gain=cfg.STEERING_P_GAIN,
+    planner = KiwiPlanner(goalLocation=goalLocation, steer_gain=cfg.STEERING_P_GAIN,
                         throttle_gain=cfg.THROTTLE_P_GAIN)
 
     # Actuators: steering and throttle
@@ -69,7 +68,7 @@ def drive(cfg, goalLocation):
     
     #the DMP in the IMU should return the bearing relative to North
     # TODO - implement this part...
-    V.add(dmp, outputs=["bearing_angle"], threaded=True)
+    V.add(dmp, outputs=["bearing"], threaded=True)
 
     #the ultrasonics will tell you whether you need to stop
     #True means stop, False means go
@@ -81,7 +80,7 @@ def drive(cfg, goalLocation):
     # Instead, use actual bearing from DMP
     # It also takes in stop_cmd, a boolean indicating whether to stop
     # in which case it reverts to "STOPPED_PWM"
-    V.add(planner, inputs=["currLocation", "bearing_angle", "stop_cmd"], 
+    V.add(planner, inputs=["currLocation", "bearing", "stop_cmd"], 
             outputs=["steer_cmd", "throttle_cmd"])
 
     #steer_cmd is a pwm value

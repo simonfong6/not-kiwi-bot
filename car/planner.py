@@ -10,7 +10,7 @@ donkeycar part for controlling the car.
 from numpy import pi, cos, sin, arctan2, sqrt, square, radians
 import time
 
-class Planner():
+class KiwiPlanner():
     def __init__(self, goalLocation, steer_gain, throttle_gain):
 
         # TODO: calibrate the throttle and steering upper and lower bounds
