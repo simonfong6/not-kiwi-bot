@@ -12,11 +12,11 @@ Call: gps_manage.py -drive
 # import GPS Planner and other DK parts
 import donkeycar as dk
 #from donkeycar.parts.gps import GPS
-from donkeycar.parts.ultrasonic import HCSR04
+from wp_parts.ultrasonic import HCSR04
 #TODO implement DMP part
 #from donkeycar.parts.dmp import DMP
 #from donkeycar.parts.planner import Planner
-from donkeycar.parts.us_test_planner import Planner
+from wp_parts.us_test_planner import Planner
 from donkeycar.vehicle import Vehicle
 from donkeycar.parts.actuator import PCA9685, PWMSteering, PWMThrottle
 
@@ -49,8 +49,7 @@ def drive(cfg, goalLocation):
 
     # Planner is a DK part that calculates control signals to actuators based on current location
     # from GPS
-    planner = Planner(goalLocation=goalLocation, steer_gain=cfg.STEERING_P_GAIN,
-                        throttle_gain=cfg.THROTTLE_P_GAIN)
+    planner = Planner(goalLocation=goalLocation)
 
     # Actuators: steering and throttle
     steering_controller = PCA9685(cfg.STEERING_CHANNEL)
@@ -75,6 +74,7 @@ def drive(cfg, goalLocation):
     #the ultrasonics will tell you whether you need to stop
     #True means stop, False means go
     # This part should be good to go - Saurabh
+    ultrasonic = HCSR04()
     V.add(ultrasonic, outputs=['stop_cmd'], threaded=True)
 
     # add planner, actuator parts
