@@ -9,6 +9,7 @@ Uses the Invsense MPU 92/65 (9250 DMP, 6500 IMU).
 # import python libraries
 import time
 import sys
+from numpy import pi
 
 # import rcpy library
 # This automatically initizalizes the robotics cape
@@ -55,7 +56,7 @@ class MPU9265:
         #if we calibrate this correctly, z should be enough. all 3 
         #would be tough to incorporate anyway
         #TODO verify that the entire stack is in radians not degrees
-        return 360/2*3.1459 *self.bearing
+        return 360/2*pi *self.bearing
 
 
     def run_threaded(self):
