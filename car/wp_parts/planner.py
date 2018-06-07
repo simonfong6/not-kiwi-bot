@@ -76,7 +76,7 @@ class KiwiPlanner():
 
         # end
         if self.currWaypoint == self.numWaypoints and self.reachGoal == True:
-            self.throttle_cmd = 0.5
+            self.throttle_cmd = 0       # Set to stop when we reach final waypoint.
             print("Done.")
 
         return self.steer_cmd, self.throttle_cmd
