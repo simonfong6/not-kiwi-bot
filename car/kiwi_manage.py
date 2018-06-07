@@ -72,7 +72,8 @@ def drive(cfg, goalLocation):
 
     #the ultrasonics will tell you whether you need to stop
     #True means stop, False means go
-    # This part should be good to go - Saurabh
+    # This part should be good to go - Saurab
+    ultrasonic = HCSR04()
     V.add(ultrasonic, outputs=['stop_cmd'], threaded=True)
 
     # add planner, actuator parts
