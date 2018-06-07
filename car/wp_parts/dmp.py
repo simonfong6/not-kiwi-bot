@@ -66,8 +66,7 @@ class MPU9265:
         while(self.on):
             data = mpu9250.read()
             #set LOW_PASS_FILTER TO 0 to disable
-            self.bearing = LOW_PASS_FILTER*self.bearing + 
-                (1-LOW_PASS_FILTER)*data['tb'][2]
+            self.bearing = LOW_PASS_FILTER*self.bearing + (1-LOW_PASS_FILTER)*data['tb'][2]
 
     def shutdown(self):
         self.on = False
