@@ -102,7 +102,7 @@ class KiwiPlanner():
         #if we're off by a negative angle, then we compensate by changing 
         #in the positive direction, hence the - sign
         #^^this comment is dumb, ignore
-        self.bearing = bearing_angle + (2*pi) - bearingToDest
+        self.bearing = bearingToDest - bearing_angle
         #the steerer automatically converts an angle to pwm
         self.steer_cmd = self.steer_gain * self.bearing
 
