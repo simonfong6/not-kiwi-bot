@@ -37,7 +37,7 @@ class KiwiPlanner():
         
         #reduced from 15m to 5m
         self.goalThreshold = 5                # the setpoint threshold for distance to goal [m]
-
+        self.reachGoal = False
         # initialize a text file
         #self.textFile = open('gps_data.txt', 'w')
 
@@ -57,7 +57,6 @@ class KiwiPlanner():
             # continue on waypoints list
             self.reachGoal = False
             self.currWaypoint += 1
-            self.goalWaitCounter = 0
             self.distance = 100  # reset distance to an arbitrary distance
 
         else:
@@ -69,7 +68,7 @@ class KiwiPlanner():
             self.throttle_cmd = 0.5 if stop_cmd else 0
 
         # print updates
-        #self.print_process()
+        self.print_process()
 
         # write to file
         # self.textFile.write("%s, %s;\n" % (self.currLocation[0], self.currLocation[1]))
@@ -94,7 +93,7 @@ class KiwiPlanner():
         @params: bearing_angle - the angle from the current position to the next waypoint
         @return: steering command
         """
-        bearingToDest = self.calc_bearing(currLocation, self.goalLocation)
+        bearingToDest = self.calc_bearing(currLocation, self.goalLocation[self.currWaypoint])
 
         #2pi radians aka 0 rads represents North. bearing angle
         #ranges from 0 to +2pi. 2pi- bearing - pi = negative if
@@ -185,7 +184,7 @@ class KiwiPlanner():
         angle betwwen current location and North (bearing),
         the turning angle and speed
         """
-        print("Goal wait counter: %d" % self.goalWaitCounter)
+        #print("Goal wait counter: %d" % self.goalWaitCounter)
         print("Current waypoint: %d" % self.currWaypoint)
         print(self.goalLocation[self.currWaypoint])
         print(self.reachGoal)
