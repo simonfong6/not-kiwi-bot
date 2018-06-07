@@ -94,7 +94,7 @@ class KiwiPlanner():
         @params: bearing_angle - the angle from the current position to the next waypoint
         @return: steering command
         """
-        bearingToDest = calc_bearing(currLocation, self.goalLocation)
+        bearingToDest = self.calc_bearing(currLocation, self.goalLocation)
 
         #2pi radians aka 0 rads represents North. bearing angle
         #ranges from 0 to +2pi. 2pi- bearing - pi = negative if
