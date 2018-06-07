@@ -112,7 +112,7 @@ if __name__ == '__main__':
                   [32.881271, -117.235471]]
     goalLocation = [[32.8811271,-117.2342783], [32.8812414, -117.2374792]]
     goalLocation = [[32.881322,-117.235454], [32.881162,-117.235459]]
-    waypoint = straight_away
+    waypoints = straight_away
     
 
     cfg = dk.load_config()  
