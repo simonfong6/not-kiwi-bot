@@ -55,7 +55,7 @@ class MPU9265:
         #if we calibrate this correctly, z should be enough. all 3 
         #would be tough to incorporate anyway
         #TODO verify that the entire stack is in radians not degrees
-        return self.bearing
+        return 350/2*3.1459 *self.bearing
 
 
     def run_threaded(self):

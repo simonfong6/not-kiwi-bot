@@ -84,7 +84,7 @@ class KiwiPlanner():
     def shutdown(self):
         return
 
-    def steering_controller(self, bearing_angle):
+    def steering_controller(self, currLocation, bearing_angle):
         """
         steering_controller()
 
@@ -94,12 +94,15 @@ class KiwiPlanner():
         @params: bearing_angle - the angle from the current position to the next waypoint
         @return: steering command
         """
+        bearingToDest = calc_bearing(currLocation, self.goalLocation)
+
         #2pi radians aka 0 rads represents North. bearing angle
         #ranges from 0 to +2pi. 2pi- bearing - pi = negative if
         #we need to turn right, positive if we need to turn left
         #if we're off by a negative angle, then we compensate by changing 
         #in the positive direction, hence the - sign
-        self.bearing = -(2*pi - bearing_angle - pi)
+        #^^this comment is dumb, ignore
+        self.bearing = bearing_angle + (2*pi) - bearingToDest
         #the steerer automatically converts an angle to pwm
         self.steer_cmd = self.steer_gain * self.bearing
 
