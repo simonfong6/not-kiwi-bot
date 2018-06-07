@@ -65,7 +65,8 @@ class KiwiPlanner():
             self.steer_cmd = self.steering_controller(currLocation, bearing_angle)
             #415 is our driving speed, 405 is our neutral
             #TODO Make these constants easier to find/change
-            self.throttle_cmd = 0.5 if stop_cmd else 0
+            self.throttle_cmd = 0 if stop_cmd else 0.5
+            print("Stop Cmd = {}".format(stop_cmd))
 
         # print updates
         self.print_process()
@@ -102,6 +103,9 @@ class KiwiPlanner():
         #in the positive direction, hence the - sign
         #^^this comment is dumb, ignore
         self.bearing = bearingToDest - bearing_angle
+        print("GPS Goal Bearing: {}".format(bearingToDest))
+        print("Current Bearing: {}".format(bearing_angle))
+        print("Bearing Error: {}".format(self.bearing))
         #the steerer automatically converts an angle to pwm
         self.steer_cmd = self.steer_gain * self.bearing
 
@@ -146,7 +150,7 @@ class KiwiPlanner():
         # remap from [-pi,pi] to [0, 2*pi] for compass bearing
         compassBearingRad = (initialBearing + 2*pi) % (2*pi)
 
-        return compassBearingRad
+        return initialBearing
 
     def dist_between_gps_points(self, pointA, pointB):
         """
